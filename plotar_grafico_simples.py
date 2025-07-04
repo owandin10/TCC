@@ -4,6 +4,7 @@ import os
 
 # --- PASSO 1: CONFIGURAÇÃO DE CAMINHOS ---
 # O script espera que o ficheiro CSV esteja numa subpasta chamada 'data'.
+
 try:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 except NameError:
