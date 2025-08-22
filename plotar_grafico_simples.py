@@ -10,12 +10,8 @@ try:
 except NameError:
     BASE_DIR = os.getcwd()
 
-<<<<<<< HEAD
 # ATENÇÃO: Verifique se o nome do seu novo CSV é realmente "dados.csv"
 caminho_do_csv = os.path.join(BASE_DIR, "data", "data.csv")
-=======
-caminho_do_csv = os.path.join(BASE_DIR, "data", "Inversor_1.csv")
->>>>>>> 75bda8578b4454d271a0481bea29f97f8b8821c7
 print(f"A tentar ler o ficheiro em: {caminho_do_csv}")
 
 # --- PASSO 2: LEITURA E VALIDAÇÃO DO FICHEIRO CSV ---
@@ -23,19 +19,14 @@ try:
     df = pd.read_csv(
         caminho_do_csv,
         sep=',',
-<<<<<<< HEAD
         # IMPORTANTE: Se o seu CSV usa vírgula como decimal (ex: 220,5), mude para decimal=','
         decimal='.', 
-=======
-        decimal='.',
->>>>>>> 75bda8578b4454d271a0481bea29f97f8b8821c7
         parse_dates=['DateTime'],
         index_col='DateTime'
     )
     print("Ficheiro CSV lido com sucesso.")
 except FileNotFoundError:
     print(f"\nERRO CRÍTICO: O ficheiro não foi encontrado. Verifique o caminho: '{caminho_do_csv}'")
-<<<<<<< HEAD
     exit()
 except Exception as e:
     print(f"\nERRO CRÍTICO ao ler o ficheiro CSV: {e}")
@@ -60,18 +51,6 @@ for col in cols_numericas:
 
 df.fillna(0, inplace=True)
 print("Limpeza e conversão de dados concluída.")
-=======
-    exit() # Encerra o script se o ficheiro não for encontrado
-except Exception as e:
-    print(f"\nERRO CRÍTICO ao ler o ficheiro CSV: {e}")
-    exit() # Encerra o script em caso de outros erros de leitura
-
-# --- PASSO 3: LIMPEZA DOS DADOS ---
-# Esta parte agora é executada apenas se o ficheiro for lido com sucesso.
-df['Dem_Ativa'] = pd.to_numeric(df['Dem_Ativa'], errors='coerce')
-df['Tensao'] = pd.to_numeric(df['Tensao'], errors='coerce')
-df.fillna(0, inplace=True)
->>>>>>> 75bda8578b4454d271a0481bea29f97f8b8821c7
 
 # --- PASSO 4: LOOP INTERATIVO PARA SELECIONAR O DIA ---
 while True:
@@ -88,20 +67,12 @@ while True:
 
     try:
         data_selecionada = pd.to_datetime(data_selecionada_str).date()
-<<<<<<< HEAD
         df_dia = df[df.index.date == data_selecionada].copy()
-=======
-        df_dia = df[df.index.date == data_selecionada].copy() # Usar .copy() para evitar warnings
->>>>>>> 75bda8578b4454d271a0481bea29f97f8b8821c7
 
         if not df_dia.empty:
             print(f"\nA mostrar gráficos para o dia {data_selecionada_str}...")
 
-<<<<<<< HEAD
             # Gráfico de Geração Ativa (Sem alterações)
-=======
-            # Gráfico de Geração Ativa
->>>>>>> 75bda8578b4454d271a0481bea29f97f8b8821c7
             fig_geracao = px.area(
                 df_dia,
                 x=df_dia.index,
@@ -111,7 +82,6 @@ while True:
             )
             fig_geracao.show()
 
-<<<<<<< HEAD
             # Gráfico de Tensão (ATUALIZADO PARA 3 FASES)
             fig_tensao = px.line(
                 df_dia,
@@ -132,18 +102,6 @@ while True:
             )
             fig_corrente.show()
 
-=======
-            # Gráfico de Tensão
-            fig_tensao = px.line(
-                df_dia,
-                x=df_dia.index,
-                y="Tensao",
-                title=f"Tensão para o dia {data_selecionada_str}",
-                labels={"index": "Hora do Dia", "Tensao": "Tensão (V)"}
-            )
-            fig_tensao.show()
-
->>>>>>> 75bda8578b4454d271a0481bea29f97f8b8821c7
         else:
             print(f"AVISO: Nenhum dado foi encontrado para o dia {data_selecionada_str}. Por favor, tente outra data.")
 
