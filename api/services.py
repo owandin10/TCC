@@ -128,3 +128,4 @@ def obter_dados_para_api(data_solicitada_str=None):
 
 # --- Execução Inicial ---
 carregar_dados_e_treinar_modelo()
+
