@@ -161,3 +161,5 @@ def gerar_relatorio_ia(data_selecionada_str):
     except Exception as e:
         return html.P(f"Erro ao carregar a análise da IA: {e}", style={'color': 'red'})
 
+if __name__ == '__main__':
+    app.run(debug=True, port=8050)
